@@ -1,0 +1,17 @@
+<h1><%= @flat.name %></h1>
+<div class="m-2">
+<%# add carroussel of photos %>
+  <%= image_tag "http://picsum.photos/200/200?random=#{@flat.id}" %>
+  <%= image_tag "http://picsum.photos/200/200?random=#{@flat.id + 10}" %>
+  <%= image_tag "http://picsum.photos/200/200?random=#{@flat.id + 20}" %>
+  <%= image_tag "http://picsum.photos/200/200?random=#{@flat.id + 30}" %>
+</div>
+
+<div class="m-2">
+  <h3><%= @flat.address %></h3>
+  <p><%= @flat.description %></p>
+  <p><i class="fas fa-user-friends"></i>: <%= @flat.number_of_guests %></p>
+  <p><i class="fas fa-dollar-sign"></i>: <%= @flat.price_per_night %></p>
+</div>
+
+<%= link_to 'back to flats', flats_path %>

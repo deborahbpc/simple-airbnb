@@ -1,13 +1,18 @@
 <h1>All flats</h1>
 
 <% @flats.each do |flat|%>
-  <p>
-  <ul>
-    <li><%= flat.name %></li>
-    <li><%= flat.description %></li>
-    <li><%= flat.address %></li>
-    <li><i class="fas fa-user-friends"></i>: <%= flat.number_of_guests %></li>
-    <li><i class="fas fa-dollar-sign"></i>: <%= flat.price_per_night %></li>
-  </ul>
-  </p> 
+<div class="container">
+  <div class="p-2 m-2 border d-flex">
+    <div class="m-2">
+      <%= image_tag "http://picsum.photos/200/200?random=#{flat.id}" %>
+    </div>
+    <div class="m-2">
+      <p><%= link_to flat.name, flat_path(flat) %></p>
+      <p><%= flat.address %></p>
+      <p><i class="fas fa-user-friends"></i>: <%= flat.number_of_guests %></p>
+      <p><i class="fas fa-dollar-sign"></i>: <%= flat.price_per_night %></p>
+    </div>
+  </div>
+</div>
+  
 <% end %>
