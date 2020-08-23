@@ -1,5 +1,5 @@
 class FlatsController < ApplicationController
-  before_action :set_flat, only: [:show]
+  before_action :set_flat, only: [:show, :destroy]
 
   def index
     @flats = Flat.all
@@ -9,37 +9,34 @@ class FlatsController < ApplicationController
   end
 
   def new
+    @flat = Flat.new
   end
 
   def create
-    @object = Object.new(params[:object])
-    if @object.save
+    @flat = Flat.new(flat_params)
+    if @flat.save
       flash[:success] = "Object successfully created"
-      redirect_to @object
+      redirect_to @flat
     else
       flash[:error] = "Something went wrong"
       render 'new'
     end
   end
-  
 
   def edit
   end
 
   def update
+    @flat.update(flat_params)
+    @flat.save
+    redirect_to @flat
   end
-  
+
   def destroy
-    @object = Object.find(params[:id])
-    if @object.destroy
-      flash[:success] = 'Object was successfully deleted.'
-      redirect_to objects_url
-    else
-      flash[:error] = 'Something went wrong'
-      redirect_to objects_url
-    end
+    @flat.destroy
+    redirect_to flats_path
   end
-  
+
   private
 
   def set_flat
@@ -47,6 +44,6 @@ class FlatsController < ApplicationController
   end
 
   def flat_params
-    params.require(flat).permit(:name, :description, :address, :number_of_guests, :price_per_night)
+    params.require(:flat).permit(:name, :description, :address, :number_of_guests, :price_per_night)
   end
 end

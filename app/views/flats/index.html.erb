@@ -1,5 +1,7 @@
 <h1>All flats</h1>
 
+<%= link_to 'Add new flat', new_flat_path %>
+
 <% @flats.each do |flat|%>
 <div class="container">
   <div class="p-2 m-2 border d-flex">
@@ -11,6 +13,10 @@
       <p><%= flat.address %></p>
       <p><i class="fas fa-user-friends"></i>: <%= flat.number_of_guests %></p>
       <p><i class="fas fa-dollar-sign"></i>: <%= flat.price_per_night %></p>
+    </div>
+    <div>
+      <%= link_to 'Edit', edit_flat_path(flat) %>
+      <%= link_to 'Delete', flat_path(flat) %>
     </div>
   </div>
 </div>
